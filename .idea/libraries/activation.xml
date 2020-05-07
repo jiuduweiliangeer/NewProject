@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="activation">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/activation.jar!/" />
+      <root url="jar://$PROJECT_DIR$/web/WEB-INF/lib/mail.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

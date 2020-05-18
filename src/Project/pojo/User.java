@@ -1,8 +1,11 @@
 package Project.pojo;
 
+import javax.validation.constraints.Email;
+
 public class User {
     private String username;
     private String password;
+    @Email(message = "请输入正确的邮箱")
     private String email;
 
     public User() {}

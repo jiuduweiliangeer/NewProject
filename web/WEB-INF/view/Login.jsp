@@ -115,7 +115,7 @@
     }
 </style>
 <body background="image/Login1.jpg">
-<div class="box" >
+<div class="box">
     <h2>Login</h2>
     <form action="login" method="post">
         <div class="inputBox">

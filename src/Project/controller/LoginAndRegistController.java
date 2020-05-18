@@ -2,14 +2,17 @@ package Project.controller;
 
 import Project.dao.LoginDAO;
 import Project.dao.RegistDAO;
+import Project.pojo.User;
 import Project.service.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.Map;
 
 @Controller
@@ -29,10 +32,10 @@ public class LoginAndRegistController {
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map<String,Object> map){
         System.out.println("controller load");
         boolean s=loginDAO.Login(username, password);
-        map.put("error","verify false");
         if(s){
             return "yes";
         }else {
+            map.put("error","verify false");
             return "redirect:/loginjsp";
         }
     }
@@ -41,10 +44,11 @@ public class LoginAndRegistController {
         return "Regist";
     }
     @RequestMapping("/regist")
-    public String regist(@RequestParam("new_name") String username,@RequestParam("new_password") String password,
-                         @RequestParam("password") String repassword,@RequestParam("email") String email,
+    public String regist(@Valid User user, BindingResult bindingResult,
+                         @RequestParam("new_name") String username, @RequestParam("new_password") String password,
+                         @RequestParam("password") String repassword, @RequestParam("email") String email,
                          Map<String,Object> map){
-        if (repassword.equals(password)){
+        if (repassword.equals(password)&&bindingResult.getErrorCount()<=0){
             map.put("rusername",username);
             map.put("rpassword",password);
             map.put("remail",email);
@@ -52,6 +56,7 @@ public class LoginAndRegistController {
             System.out.println(code);
             return "Code";
         }else{
+            map.put("user",user);
             return "redirect:/registjsp";
         }
     }

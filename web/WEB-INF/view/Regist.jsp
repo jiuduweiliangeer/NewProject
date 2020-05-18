@@ -114,6 +114,9 @@
         border-radius: 5px;
         float: right;
     }
+    .red{
+        color: red;
+    }
 </style>
 <body background="image/Login1.jpg">
 <div class="box">
@@ -130,6 +133,9 @@
         </div>
         <div class="inputBox">
             <input type="text" placeholder="Email" name="email">
+        </div>
+        <div>
+            <form:errors path="email" cssClass="red"/>
         </div>
         <div>
             <p style="color: red">${error}</p>

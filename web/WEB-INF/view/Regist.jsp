@@ -141,7 +141,7 @@
             <p style="color: red">${error}</p>
         </div>
         <input type="submit" name="" value="regist" id="submit" class="submit">
-        <a href="login">
+        <a href="loginjsp">
             <input type="button" value="return" class="register">
         </a>
     </form>

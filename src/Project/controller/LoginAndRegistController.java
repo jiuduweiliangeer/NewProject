@@ -7,10 +7,7 @@ import Project.service.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -33,6 +30,7 @@ public class LoginAndRegistController {
         System.out.println("controller load");
         boolean s=loginDAO.Login(username, password);
         if(s){
+            map.put("username",username);
             return "yes";
         }else {
             map.put("error","verify false");
@@ -71,5 +69,11 @@ public class LoginAndRegistController {
         }else{
             return "redirect:/registjsp";
         }
+    }
+    @RequestMapping(value = "/viewinform/{username}")
+    public String infrom(@PathVariable(value = "username")  String username,Map<String,Object> map){
+            User user=loginDAO.Select(username);
+            map.put("user",user);
+            return "inform";
     }
 }

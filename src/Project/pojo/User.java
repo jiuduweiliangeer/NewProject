@@ -7,13 +7,21 @@ public class User {
     private String password;
     @Email(message = "请输入正确的邮箱")
     private String email;
+    private Integer stuID;
+    private String gender;
+    private String major;
+    private String stuclass;
 
     public User() {}
 
-    public User(String username, String password, String email) {
+    public User(String username, String password, @Email(message = "请输入正确的邮箱") String email, Integer stuID, String gender, String major, String stuclass) {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.stuID = stuID;
+        this.gender = gender;
+        this.major = major;
+        this.stuclass = stuclass;
     }
 
     public void setUsername(String username) {
@@ -28,6 +36,22 @@ public class User {
         this.email = email;
     }
 
+    public void setStuID(Integer stuID) {
+        this.stuID = stuID;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public void setStuclass(String stuclass) {
+        this.stuclass = stuclass;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -40,12 +64,32 @@ public class User {
         return email;
     }
 
+    public Integer getStuID() {
+        return stuID;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public String getStuclass() {
+        return stuclass;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", stuID=" + stuID +
+                ", gender='" + gender + '\'' +
+                ", major='" + major + '\'' +
+                ", stuclass='" + stuclass + '\'' +
                 '}';
     }
 }

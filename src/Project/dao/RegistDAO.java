@@ -14,7 +14,7 @@ public class RegistDAO {
     private JdbcTemplate jdbcTemplate;
     @Transactional
     public void Regist(String username,String password,String email){
-        String sql="INSERT INTO test VALUES(?,?,?)";
+        String sql="INSERT INTO studentuser (username,password,email) VALUES(?,?,?)";
         int count=jdbcTemplate.update(sql,new Object[]{username,password,email});
         System.out.println(count);
     }

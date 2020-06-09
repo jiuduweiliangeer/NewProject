@@ -37,7 +37,7 @@ public class LoginAndRegistController {
             return "redirect:/loginjsp";
         }
     }
-    @RequestMapping("registjsp")
+    @RequestMapping("/registjsp")
     public String registjsp(){
         return "Regist";
     }
@@ -75,5 +75,21 @@ public class LoginAndRegistController {
             User user=loginDAO.Select(username);
             map.put("user",user);
             return "inform";
+    }
+    @RequestMapping(value = "/demothis/{username}")
+    public String modify(@PathVariable("username") String username,Map<Object,String> map){
+        System.out.println("controller load.....");
+        map.put("username",username);
+        return "modify";
+    }
+    @RequestMapping(value = "/modifyform/{username}")
+    public String modifyform(@PathVariable("username") String username,@RequestParam("oldpassword") String Opassword,@RequestParam("newpassword") String Npassword){
+
+        User user=loginDAO.Updatepassword(Opassword,username,Npassword);
+        return "redirect:/viewinform/{username}";
+    }
+    @RequestMapping("/demojjj")
+    public String returnthis(){
+        return "redirect:/registjsp";
     }
 }

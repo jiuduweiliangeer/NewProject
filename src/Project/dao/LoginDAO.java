@@ -1,6 +1,7 @@
 package Project.dao;
 
 import Project.pojo.User;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -28,6 +29,11 @@ public class LoginDAO {
     public User Select(String username){
         String sql="SELECT * FROM studentuser WHERE username=?";
         Object user=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),username);
+        return (User) user;
+    }
+    public User Updatepassword(String username,String Opassword,String Npassword){
+        String sql="UPDATE studentuser SET password=? WHERE username=? AND password=?";
+        Object user =jdbcTemplate.update(sql,Npassword,username,Opassword);
         return (User) user;
     }
 }

@@ -22,17 +22,14 @@ public class LoginAndRegistController {
     @Autowired
     private Demo demo;
     private String code;
-    @RequestMapping("/loginjsp")
-    public String loginjsp(){
-        return "Login";
-    }
     @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map<String,Object> map){
         System.out.println("controller load");
         boolean s=loginDAO.Login(username, password);
         if(s){
-            map.put("username",username);
-            return "yes";
+            User user=loginDAO.Select(username);
+            map.put("user",user);
+            return "index";
         }else {
             map.put("error","verify false");
             return "Login";
@@ -75,10 +72,16 @@ public class LoginAndRegistController {
     public String infrom(@PathVariable(value = "username")  String username,Map<String,Object> map){
             User user=loginDAO.Select(username);
             map.put("user",user);
-            return "inform";
+            return "index";
     }
-    @RequestMapping(value = "/demothis/{username}")
-    public String modify(@PathVariable("username") String username,Map<Object,String> map){
+    @RequestMapping(value = "/viewmore/{user.username}")
+    public String infrom1(@PathVariable(value = "user.username")  String username,Map<String,Object> map){
+        User user=loginDAO.Select(username);
+        map.put("user",user);
+        return "inform";
+    }
+    @RequestMapping(value = "/demothis/{user.username}")
+    public String modify(@PathVariable("user.username") String username,Map<Object,String> map){
         System.out.println("controller load.....");
         map.put("username",username);
         return "modify";
@@ -98,8 +101,5 @@ public class LoginAndRegistController {
         }
 
     }
-    @RequestMapping("/demojjj")
-    public String returnthis(){
-        return "redirect:/registjsp";
-    }
+
 }

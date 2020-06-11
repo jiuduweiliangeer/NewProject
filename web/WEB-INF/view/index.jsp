@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -27,19 +29,19 @@
             <div class="card">
                 <div class="card-header bg-primary-9 d-flex align-items-center justify-content-between">
                     <h4 class="text-white-85 font-weight-normal">快速导航</h4>
-                    <p class="small"><a href="javascript:;" class="text-white-85">MOVE>></a></p>
+                    <p class="small"><a href="${pageContext.request.contextPath}/viewmore/${user.username}" class="text-white-85">MORE>></a></p>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-4 pr-0">
+                        <div class="col-sm-4 pr-0" style="height: 450px;">
                             <a href="#">
                                 <div class="card text-white bg-blue mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
                                         <div>
                                             <i
                                                     class="iconfont icon-idcard-fill d-block text-center font-size-64"></i>
-                                            <h5 class="text-white">姓名：<span>明慧</span></h5>
-                                            <h5 class="text-white">学号：<span>20131003605</span></h5>
+                                            <h5 class="text-white">姓名：<span>${user.username}</span></h5>
+                                            <h5 class="text-white">学号：<span>${user.stuID}</span></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -52,7 +54,7 @@
                                         <div>
                                             <i
                                                     class="iconfont icon-setting-fill d-block text-center font-size-64"></i>
-                                            <h5 class="text-white">修改密码</h5>
+                                            <h5 class="text-white">座位选择</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +62,7 @@
                         </div>
                         <div class="col-sm">
                             <a href="#">
-                                <div class="card text-white bg-orange mb-3 shadow-1">
+                                <div class="card text-white bg-orange mb-3 shadow-1" style="height: 240px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
                                                 class="iconfont icon-time-circle-fill d-block text-center font-size-64 mr-3"></i>
@@ -69,7 +71,7 @@
                                 </div>
                             </a>
                             <a href="#">
-                                <div class="card text-white shadow-1 bg-magenta">
+                                <div class="card text-white shadow-1 bg-magenta" style="height: 190px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
                                                 class="iconfont icon-detail-fill d-block text-center font-size-64 mr-3"></i>
@@ -155,6 +157,5 @@
 <script src="${pageContext.request.contextPath}/js/mock-min.js"></script>
 
 <!-- mock假数据 -->
-
 </body>
 </html>

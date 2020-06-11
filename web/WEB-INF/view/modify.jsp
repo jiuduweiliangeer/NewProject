@@ -135,7 +135,7 @@
             <p style="color: red">${error}</p>
         </div>
         <input type="submit" name="" value="modify" id="submit" class="submit">
-        <a href="loginjsp">
+        <a href="${pageContext.request.contextPath}/viewinform/${username}">
             <input type="button" value="return" class="register">
         </a>
     </form>

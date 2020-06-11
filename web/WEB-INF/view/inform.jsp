@@ -29,7 +29,7 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-sm-4 pr-0">
+                        <div class="col-sm-4 pr-0" style="height: 500px;">
                             <a href="#">
                                 <div class="card text-white bg-orange mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
@@ -44,7 +44,7 @@
                             </a>
                         </div>
                         <div class="col-sm-3 pr-0">
-                            <a href="${pageContext.request.contextPath}/demothis/${username}">
+                            <a href="${pageContext.request.contextPath}/demothis/${user.username}">
                                 <div class="card text-white bg-magenta mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
                                         <div>
@@ -56,7 +56,7 @@
                         </div>
                         <div class="col-sm">
                             <a href="#">
-                                <div class="card text-white bg-cyan mb-3 shadow-1">
+                                <div class="card text-white bg-cyan mb-3 shadow-1" style="height: 260px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
                                                 class="iconfont icon-time-circle-fill d-block text-center font-size-64 mr-3"></i>
@@ -65,7 +65,7 @@
                                 </div>
                             </a>
                             <a href="#">
-                                <div class="card text-white shadow-1 bg-blue">
+                                <div class="card text-white shadow-1 bg-blue" style="height: 220px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
                                                 class="iconfont icon-detail-fill d-block text-center font-size-64 mr-3"></i>

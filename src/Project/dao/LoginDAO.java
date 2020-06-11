@@ -25,7 +25,6 @@ public class LoginDAO {
             return s;
         }
     }
-    @Test
     public User Select(String username){
         String sql="SELECT * FROM studentuser WHERE username=?";
         Object user=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),username);

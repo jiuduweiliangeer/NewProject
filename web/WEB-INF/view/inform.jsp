@@ -14,12 +14,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>首页</title>
-    <link href="../../bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../font/iconfont.css" rel="stylesheet">
-    <link href="../../css/public.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/font/iconfont.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/public.css" rel="stylesheet">
 </head>
 <body>
-<a href="${pageContext.request.contextPath}/demojjj">回注册界面</a>
 <section class="container-fluid">
     <div class="row">
         <aside class="col-12">
@@ -83,11 +82,11 @@
     </div>
 </section>
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
-<script src="../../js/axios.min.js"></script>
-<script src="../../js/mock-min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/axios.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/mock-min.js"></script>
 
 <!-- mock假数据 -->
 

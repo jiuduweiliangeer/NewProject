@@ -4,6 +4,7 @@ import Project.dao.LoginDAO;
 import Project.dao.RegistDAO;
 import Project.pojo.User;
 import Project.service.Demo;
+import com.sun.corba.se.spi.ior.ObjectKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -34,7 +35,7 @@ public class LoginAndRegistController {
             return "yes";
         }else {
             map.put("error","verify false");
-            return "redirect:/loginjsp";
+            return "Login";
         }
     }
     @RequestMapping("/registjsp")
@@ -83,13 +84,17 @@ public class LoginAndRegistController {
         return "modify";
     }
     @RequestMapping(value = "/modifyform/{username}")
-    public String modifyform(@PathVariable("username") String username,@RequestParam("oldpassword") String Opassword,@RequestParam("newpassword") String Npassword){
+    public String modifyform(@PathVariable("username") String username,
+                             @RequestParam("oldpassword") String Opassword,
+                             @RequestParam("newpassword") String Npassword,
+                             Map<Object,String> map){
         System.out.println("modifycontroller load...");
-        boolean s=loginDAO.Updatepassword(username, Opassword, Npassword);
-        if(s){
+        Integer s=loginDAO.Updatepassword(username, Opassword, Npassword);
+        if(s==1){
             return "redirect:/viewinform/{username}";
         }else{
-            return "redirect:/modifyform/{username}";
+            map.put("error","密码验证错误");
+            return "modify";
         }
 
     }

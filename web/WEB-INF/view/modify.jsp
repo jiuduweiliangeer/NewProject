@@ -118,7 +118,7 @@
         color: red;
     }
 </style>
-<body background="image/Login1.jpg">
+<body background="${pageContext.request.contextPath}/image/Login1.jpg">
 <div class="box">
     <h2>Modify</h2>
     <form action="${pageContext.request.contextPath}/modifyform/${username}" method="post">

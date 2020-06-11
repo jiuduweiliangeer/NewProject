@@ -31,16 +31,16 @@ public class LoginDAO {
         Object user=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),username);
         return (User) user;
     }
-    public boolean Updatepassword(String username,String Opassword,String Npassword){
-        boolean s;
+    public Integer Updatepassword(String username,String Opassword,String Npassword){
+        int s;
         String sql="SELECT password FROM studentuser WHERE username=?";
         String t=jdbcTemplate.queryForObject(sql,String.class,username);
         if (Opassword.equals(t)) {
             String sql1="UPDATE studentuser SET password=? WHERE username=?";
             jdbcTemplate.update(sql1,Npassword,username);
-            s=true;
+            s=1;
         }else{
-            s=false;
+            s=0;
         }
         return s;
     }

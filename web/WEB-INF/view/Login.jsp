@@ -125,7 +125,7 @@
             <input type="password" name="password" required="" placeholder="Password" id="password">
         </div>
         <div>
-            <p style="color: red">${error}</p>
+            <p style="color: red">${requestScope.error}</p>
         </div>
         <input type="submit" name="" value="login" id="submit" class="submit">
         <a href="registjsp">

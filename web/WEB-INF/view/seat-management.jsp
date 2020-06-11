@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>座位管理</title>
-    <link href="../../bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../bootstrap-table-master/dist/bootstrap-table.min.css">
-    <link href="../../font/iconfont.css" rel="stylesheet">
-    <link href="../../css/public.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-table-master/dist/bootstrap-table.min.css">
+    <link href="${pageContext.request.contextPath}/font/iconfont.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/public.css" rel="stylesheet">
 </head>
 
 <body>
@@ -90,13 +90,13 @@
     </table>
 </section>
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
-<script src="../../js/axios.min.js"></script>
-<script src="../../js/mock-min.js"></script>
-<script src="../../bootstrap-table-master/dist/bootstrap-table.min.js"></script>
-<script src="../../bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/axios.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/mock-min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script>
     var $table = $('#table')
 

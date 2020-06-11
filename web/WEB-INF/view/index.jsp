@@ -11,9 +11,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>首页</title>
-    <link href="../../bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../../font/iconfont.css" rel="stylesheet">
-    <link href="../../css/public.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/font/iconfont.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/public.css" rel="stylesheet">
 </head>
 
 <body>
@@ -113,19 +113,19 @@
                                 </ol>
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
-                                        <img src="../../image/index/img-1.jpg" class="d-block img-fluid h-100" alt="...">
+                                        <img src="${pageContext.request.contextPath}/image/index/img-1.jpg" class="d-block img-fluid h-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5></h5>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="../../image/index/img-2.jpg" class="d-block img-fluid h-100" alt="...">
+                                        <img src="${pageContext.request.contextPath}/image/index/img-2.jpg" class="d-block img-fluid h-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5></h5>
                                         </div>
                                     </div>
                                     <div class="carousel-item">
-                                        <img src="../../image/index/img-3.jpg" class="d-block img-fluid h-100" alt="...">
+                                        <img src="${pageContext.request.contextPath}/image/index/img-3.jpg" class="d-block img-fluid h-100" alt="...">
                                         <div class="carousel-caption d-none d-md-block">
                                             <h5></h5>
                                         </div>
@@ -148,11 +148,11 @@
     </div>
 </section>
 
-<script src="../../js/jquery.min.js"></script>
-<script src="../../bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
-<script src="../../bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
-<script src="../../js/axios.min.js"></script>
-<script src="../../js/mock-min.js"></script>
+<script src="${pageContext.request.contextPath}/js/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/js/bootstrap.bundle.min.js"></script>
+<script src="${pageContext.request.contextPath}/bootstrap-4.5.0-dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/axios.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/mock-min.js"></script>
 
 <!-- mock假数据 -->
 

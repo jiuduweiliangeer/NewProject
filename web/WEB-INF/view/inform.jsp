@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: x
@@ -6,6 +7,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,14 +19,14 @@
     <link href="../../css/public.css" rel="stylesheet">
 </head>
 <body>
+<a href="${pageContext.request.contextPath}/demojjj">回注册界面</a>
 <section class="container-fluid">
-    <a href="demojjj">回注册界面</a>
     <div class="row">
         <aside class="col-12">
             <div class="card">
                 <div class="card-header bg-primary-9 d-flex align-items-center justify-content-between">
                     <h4 class="text-white-85 font-weight-normal">电子科技大学成都学院图书馆座位管理员管理系统</h4>
-                    <p class="small"><a href="javascript:;" class="text-white-85">退出>></a></p>
+                    <p class="small"><a href="javascript:" class="text-white-85">退出>></a></p>
                 </div>
                 <div class="card-body">
                     <div class="row">
@@ -42,11 +45,11 @@
                             </a>
                         </div>
                         <div class="col-sm-3 pr-0">
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/demothis/${username}">
                                 <div class="card text-white bg-magenta mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
                                         <div>
-                                            <h5><a href="demothis/${username}" class="text-white">修改密码</a></h5>
+                                            <h5>修改密码</h5>
                                         </div>
                                     </div>
                                 </div>

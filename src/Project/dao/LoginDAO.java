@@ -31,9 +31,17 @@ public class LoginDAO {
         Object user=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),username);
         return (User) user;
     }
-    public User Updatepassword(String username,String Opassword,String Npassword){
-        String sql="UPDATE studentuser SET password=? WHERE username=? AND password=?";
-        Object user =jdbcTemplate.update(sql,Npassword,username,Opassword);
-        return (User) user;
+    public boolean Updatepassword(String username,String Opassword,String Npassword){
+        boolean s;
+        String sql="SELECT password FROM studentuser WHERE username=?";
+        String t=jdbcTemplate.queryForObject(sql,String.class,username);
+        if (Opassword.equals(t)) {
+            String sql1="UPDATE studentuser SET password=? WHERE username=?";
+            jdbcTemplate.update(sql1,Npassword,username);
+            s=true;
+        }else{
+            s=false;
+        }
+        return s;
     }
 }

@@ -121,7 +121,7 @@
 <body background="image/Login1.jpg">
 <div class="box">
     <h2>Modify</h2>
-    <form action="modifyform/${username}" method="post">
+    <form action="${pageContext.request.contextPath}/modifyform/${username}" method="post">
         <div class="inputBox">
             <input type="text" name="oldpassword" required="" placeholder="Oldpassword">
         </div>

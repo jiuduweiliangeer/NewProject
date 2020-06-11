@@ -84,9 +84,14 @@ public class LoginAndRegistController {
     }
     @RequestMapping(value = "/modifyform/{username}")
     public String modifyform(@PathVariable("username") String username,@RequestParam("oldpassword") String Opassword,@RequestParam("newpassword") String Npassword){
+        System.out.println("modifycontroller load...");
+        boolean s=loginDAO.Updatepassword(username, Opassword, Npassword);
+        if(s){
+            return "redirect:/viewinform/{username}";
+        }else{
+            return "redirect:/modifyform/{username}";
+        }
 
-        User user=loginDAO.Updatepassword(Opassword,username,Npassword);
-        return "redirect:/viewinform/{username}";
     }
     @RequestMapping("/demojjj")
     public String returnthis(){

@@ -14,7 +14,7 @@ import java.util.List;
 public class UserManageDAO {
     @Autowired
     private JdbcTemplate jdbcTemplate;
-    public List<User> findstu(){
+    public List findstu(){
         String identify="stu";
         String sql="SELECT * FROM studentuser WHERE identify=?";
         System.out.println("findstuDAO load...");
@@ -29,7 +29,7 @@ public class UserManageDAO {
                 user.setMajor(resultSet.getString("major"));
                 user.setStuclass(resultSet.getString("stuclass"));
                 user.setStuID(resultSet.getInt("stuID"));
-                user.setTeaID(resultSet.getInt("teaID"));
+                user.setTeaID(resultSet.getString("teaID"));
                 return user;
             }
         }, identify);

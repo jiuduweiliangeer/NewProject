@@ -11,11 +11,11 @@ public class User {
     private String gender;
     private String major;
     private String stuclass;
-    private Integer teaID;
+    private String teaID;
 
     public User() {}
 
-    public User(String username, String password, @Email(message = "请输入正确的邮箱") String email, Integer stuID, String gender, String major, String stuclass, Integer teaID) {
+    public User(String username, String password, @Email(message = "请输入正确的邮箱") String email, Integer stuID, String gender, String major, String stuclass, String teaID) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -54,7 +54,7 @@ public class User {
         this.stuclass = stuclass;
     }
 
-    public void setTeaID(int teaID) {
+    public void setTeaID(String teaID) {
         this.teaID = teaID;
     }
 
@@ -86,7 +86,7 @@ public class User {
         return stuclass;
     }
 
-    public Integer getTeaID() {
+    public String getTeaID() {
         return teaID;
     }
 

@@ -142,7 +142,7 @@ public class LoginAndRegistController {
         System.out.println("finduserscontroller....");
         List<User> users=userManageDAO.findstu();
         System.out.println(users);
-        map.put("teausername",username);
+        map.put("username",username);
         map.put("users",users);
         return "user_manager";
     }

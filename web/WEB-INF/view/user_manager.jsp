@@ -1,4 +1,4 @@
-﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
@@ -94,12 +94,16 @@
                 <c:forEach items="${users}" var="user">
                     <tr>
                         <th scope="col"><input type="checkbox" /></th>
+                        <!--<td>
+                            <img src="./img/head-pic.jpg" width="30" height="30" class="rounded-circle" />
+                        </td>-->
                         <td>林美玲</td>
                         <td>${user.username}</td>
                         <td>${user.gender}</td>
                         <td>${user.major}</td>
                         <td>${user.stuclass}</td>
                         <td>${user.email}</td>
+                        <!-- <td>浙江杭州</td>-->
                         <td>启用中</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm ml-2">启用</button>

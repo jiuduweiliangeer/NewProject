@@ -23,7 +23,7 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-dark">
-            <li class="breadcrumb-item"><a href="index.jsp">首页</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/viewinform/${username}">首页</a></li>
             <li class="breadcrumb-item active" aria-current="page">用户管理</li>
         </ol>
     </nav>

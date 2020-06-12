@@ -88,12 +88,17 @@ public class LoginAndRegistController {
     /*-------修改密码后返回--------------*/
     @RequestMapping(value = "/viewinform/{username}")
     public String infrom(@PathVariable(value = "username")  String username,Map<String,Object> map){
-            User user=loginDAO.Select(username);
-            map.put("user",user);
-            return "index";
+            String identify=loginDAO.Identify(username);
+            if (identify.equals("stu")){
+                User user=loginDAO.Select(username);
+                map.put("user",user);
+                return "index";
+            }else{
+                return "redirect:/viewmore/{username}";
+            }
     }
-    @RequestMapping(value = "/viewmore/{user.username}")
-    public String infrom1(@PathVariable(value = "user.username")  String username,Map<String,Object> map){
+    @RequestMapping(value = "/viewmore/{username}")
+    public String infrom1(@PathVariable(value = "username")  String username,Map<String,Object> map){
         User user=loginDAO.Select(username);
         map.put("user",user);
         return "inform";
@@ -112,7 +117,13 @@ public class LoginAndRegistController {
         System.out.println("modifycontroller load...");
         Integer s=loginDAO.Updatepassword(username, Opassword, Npassword);
         if(s==1){
-            return "redirect:/viewinform/{username}";
+            String identify=loginDAO.Identify(username);
+            if(identify.equals("stu")){
+                return "redirect:/viewinform/{username}";
+            }else{
+                return "redirect:/viewmore/{username}";
+            }
+
         }else{
             map.put("error","密码验证错误");
             return "modify";

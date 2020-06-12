@@ -25,6 +25,11 @@ public class LoginDAO {
             return s;
         }
     }
+    public String Identify(String username){
+        String sql="SELECT identify FROM studentuser WHERE username=?";
+        String s=jdbcTemplate.queryForObject(sql,String.class,username);
+        return s;
+    }
     public User Select(String username){
         String sql="SELECT * FROM studentuser WHERE username=?";
         Object user=jdbcTemplate.queryForObject(sql,new BeanPropertyRowMapper<>(User.class),username);
@@ -43,4 +48,5 @@ public class LoginDAO {
         }
         return s;
     }
+
 }

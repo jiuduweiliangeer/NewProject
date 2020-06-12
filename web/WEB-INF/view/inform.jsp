@@ -18,18 +18,18 @@
     <link href="${pageContext.request.contextPath}/font/iconfont.css" rel="stylesheet">
     <link href="${pageContext.request.contextPath}/css/public.css" rel="stylesheet">
 </head>
-<body>
+<body  background="${pageContext.request.contextPath}/image/back.jpg" style="background-size: 100%;">
 <section class="container-fluid">
     <div class="row">
         <aside class="col-12">
             <div class="card">
-                <div class="card-header bg-primary-9 d-flex align-items-center justify-content-between">
+                <div class="card-header bg-dark d-flex align-items-center justify-content-between">
                     <h4 class="text-white-85 font-weight-normal">电子科技大学成都学院图书馆座位管理员管理系统</h4>
-                    <p class="small"><a href="javascript:" class="text-white-85">退出>></a></p>
+                    <p class="small"><a href="${pageContext.request.contextPath}/loginjsp" class="text-white-85">退出>></a></p>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="background: rgba(0,0,0,0.2);">
                     <div class="row">
-                        <div class="col-sm-4 pr-0" style="height: 500px;">
+                        <div class="col-sm-4 pr-0" style="height: 450px;">
                             <a href="#">
                                 <div class="card text-white bg-orange mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
@@ -37,13 +37,13 @@
                                             <i
                                                     class="iconfont icon-idcard-fill d-block text-center font-size-64"></i>
                                             <h5 class="text-white">姓名：<span>${requestScope.user.username}</span></h5>
-                                            <h5 class="text-white">工号：<span>${requestScope.user.stuID}</span></h5>
+                                            <h5 class="text-white">工号：<span>${requestScope.user.teaID}</span></h5>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                        <div class="col-sm-3 pr-0">
+                        <div class="col-sm-3 pr-0" style="height: 450px;">
                             <a href="${pageContext.request.contextPath}/demothis/${user.username}">
                                 <div class="card text-white bg-magenta mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
@@ -55,8 +55,8 @@
                             </a>
                         </div>
                         <div class="col-sm">
-                            <a href="#">
-                                <div class="card text-white bg-cyan mb-3 shadow-1" style="height: 260px;">
+                            <a href="${pageContext.request.contextPath}/user_manager/${user.username}">
+                                <div class="card text-white bg-cyan mb-3 shadow-1" style="height: 230px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
                                                 class="iconfont icon-time-circle-fill d-block text-center font-size-64 mr-3"></i>
@@ -65,7 +65,7 @@
                                 </div>
                             </a>
                             <a href="#">
-                                <div class="card text-white shadow-1 bg-blue" style="height: 220px;">
+                                <div class="card text-white shadow-1 bg-blue" style="height: 200px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
                                                 class="iconfont icon-detail-fill d-block text-center font-size-64 mr-3"></i>

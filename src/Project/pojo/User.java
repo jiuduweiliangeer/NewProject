@@ -11,10 +11,11 @@ public class User {
     private String gender;
     private String major;
     private String stuclass;
+    private Integer teaID;
 
     public User() {}
 
-    public User(String username, String password, @Email(message = "请输入正确的邮箱") String email, Integer stuID, String gender, String major, String stuclass) {
+    public User(String username, String password, @Email(message = "请输入正确的邮箱") String email, Integer stuID, String gender, String major, String stuclass, Integer teaID) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -22,6 +23,7 @@ public class User {
         this.gender = gender;
         this.major = major;
         this.stuclass = stuclass;
+        this.teaID = teaID;
     }
 
     public void setUsername(String username) {
@@ -52,6 +54,10 @@ public class User {
         this.stuclass = stuclass;
     }
 
+    public void setTeaID(int teaID) {
+        this.teaID = teaID;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -80,6 +86,10 @@ public class User {
         return stuclass;
     }
 
+    public Integer getTeaID() {
+        return teaID;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -90,6 +100,7 @@ public class User {
                 ", gender='" + gender + '\'' +
                 ", major='" + major + '\'' +
                 ", stuclass='" + stuclass + '\'' +
+                ", teaID='" + teaID + '\'' +
                 '}';
     }
 }

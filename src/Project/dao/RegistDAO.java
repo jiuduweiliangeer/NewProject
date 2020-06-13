@@ -17,7 +17,7 @@ public class RegistDAO {
     @Transactional
     public void Regist(String username,String password,String email){
         String sql="INSERT INTO studentuser (username,password,email,identify,state) VALUES(?,?,?,?,?)";
-        int count=jdbcTemplate.update(sql,new Object[]{username,password,email,"stu","open"});
+        int count=jdbcTemplate.update(sql,new Object[]{username,password,email,"stu","T"});
         System.out.println(count);
     }
     public User UserMessage(String username,String major,Integer stuID,String gender,String stuclass,String name){

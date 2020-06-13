@@ -1,4 +1,4 @@
-﻿﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+﻿﻿﻿<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
@@ -30,17 +30,16 @@
 
     <div class="row">
         <div class="col-12">
-        	<form>
+        	<form action="${pageContext.request.contextPath}/user_manager_select/${username}">
             <div style="overflow:hidden;" class="bg-dark p-1 rounded">
                 <div class="input-group input-group-sm float-left" style="width:140px;">
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="inputGroupSelect01">状态</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected>请选择</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                    <select class="custom-select" name="state" id="inputGroupSelect01">
+                        <option selected value="">请选择</option>
+                        <option value="T">T</option>
+                        <option value="F">F</option>
                     </select>
                 </div>
 
@@ -48,18 +47,18 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-sm">昵称</span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" name="susername" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="input-group input-group-sm ml-2 float-left" style="width:140px;">
                     <div class="input-group-prepend">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">邮箱</span>
+                        <span class="input-group-text"  id="inputGroup-sizing-sm">邮箱</span>
                     </div>
-                    <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    <input type="text" class="form-control" name="email" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                 </div>
 
                 <div class="float-right text-right" style="width:140px;">
-                    <button type="button" class="btn btn-primary btn-sm">查询</button>
+                    <button type="submit" class="btn btn-primary btn-sm">查询</button>
                     <button type="reset" class="btn btn-secondary btn-sm ml-2">重置</button>
                 </div>
                 <div style="clear:both"></div>
@@ -113,64 +112,6 @@
                     </tr>
                 </c:forEach>
             </c:if>
-
-<%--        <tr>
-            <th scope="col"><input type="checkbox" /></th>
-            <!--<td>
-                <img src="./img/head-pic.jpg" width="30" height="30" class="rounded-circle" />
-            </td>-->
-            <td>林美玲</td>
-            <td>美妞</td>
-            <td>女</td>
-            <td>18级财经</td>
-            <td>3班</td>
-            <td>18056789102@163.com</td>
-            <!-- <td>浙江杭州</td>-->
-            <td>启用中</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm ml-2">启用</button>
-                <button type="button" class="btn btn-danger btn-sm ml-2">停用</button>
-                
-            </td>
-        </tr>
-        <tr>
-            <th scope="col"><input type="checkbox" /></th>
-            <!--<td>
-                <img src="./img/head-pic.jpg" width="30" height="30" class="rounded-circle" />
-            </td>-->
-            <td>林美玲</td>
-            <td>美妞</td>
-            <td>女</td>
-            <td>19级文理系</td>
-            <td>6班</td>
-            <td>18056789102@163.com</td>
-            <!-- <td>浙江杭州</td>-->
-            <td>启用中</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm ml-2">启用</button>
-                <button type="button" class="btn btn-danger btn-sm ml-2">停用</button>
-               
-            </td>
-        </tr>
-        <tr>
-            <th scope="col"><input type="checkbox" /></th>
-            <!--<td>
-                <img src="./img/head-pic.jpg" width="30" height="30" class="rounded-circle" />
-            </td>-->
-            <td>林美玲</td>
-            <td>美妞</td>
-            <td>女</td>
-            <td>19级电工系</td>
-            <td>1班</td>
-            <td>18056789102@163.com</td>
-            <!-- <td>浙江杭州</td>-->
-            <td>启用中</td>
-            <td>
-                <button type="button" class="btn btn-primary btn-sm ml-2">启用</button>
-                <button type="button" class="btn btn-danger btn-sm ml-2">停用</button>
-               
-            </td>
-        </tr>--%>
         </tbody>
 
     </table>

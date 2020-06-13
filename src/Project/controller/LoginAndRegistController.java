@@ -158,4 +158,18 @@ public class LoginAndRegistController {
         map.put("users",users);
         return "user_manager";
     }
+    /*---------管理用户界面查询----------------*/
+    @RequestMapping("/user_manager_select/{username}")
+    public String user_manager_select(@PathVariable("username") String username,
+                                      @RequestParam("state") String state,
+                                      @RequestParam("susername") String susername,
+                                      @RequestParam("email") String email,
+                                      Map<String,Object> map){
+        List<User> users=userManageDAO.selectfind(state,susername,email);
+        System.out.println(users);
+        map.put("username",username);
+        map.put("users",users);
+        return "user_manager";
+    }
+
 }

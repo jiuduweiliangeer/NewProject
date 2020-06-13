@@ -38,7 +38,7 @@
                                         <div>
                                             <i
                                                     class="iconfont icon-idcard-fill d-block text-center font-size-64"></i>
-                                            <h5 class="text-white">姓名：<span>${user.username}</span></h5>
+                                            <h5 class="text-white">姓名：<span>${user.name}</span></h5>
                                             <h5 class="text-white">学号：<span>${user.stuID}</span></h5>
                                         </div>
                                     </div>

@@ -23,7 +23,7 @@
 <div class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-dark">
-            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/viewinform/${username}">首页</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/viewmore/${username}">首页</a></li>
             <li class="breadcrumb-item active" aria-current="page">用户管理</li>
         </ol>
     </nav>
@@ -97,14 +97,14 @@
                         <!--<td>
                             <img src="./img/head-pic.jpg" width="30" height="30" class="rounded-circle" />
                         </td>-->
-                        <td>林美玲</td>
+                        <td>${user.name}</td>
                         <td>${user.username}</td>
                         <td>${user.gender}</td>
                         <td>${user.major}</td>
                         <td>${user.stuclass}</td>
                         <td>${user.email}</td>
                         <!-- <td>浙江杭州</td>-->
-                        <td>启用中</td>
+                        <td>${user.state}</td>
                         <td>
                             <button type="button" class="btn btn-primary btn-sm ml-2">启用</button>
                             <button type="button" class="btn btn-danger btn-sm ml-2">停用</button>

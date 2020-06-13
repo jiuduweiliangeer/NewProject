@@ -16,13 +16,13 @@ public class RegistDAO {
     private LoginDAO loginDAO;
     @Transactional
     public void Regist(String username,String password,String email){
-        String sql="INSERT INTO studentuser (username,password,email,identify) VALUES(?,?,?,?)";
-        int count=jdbcTemplate.update(sql,new Object[]{username,password,email,"stu"});
+        String sql="INSERT INTO studentuser (username,password,email,identify,state) VALUES(?,?,?,?,?)";
+        int count=jdbcTemplate.update(sql,new Object[]{username,password,email,"stu","open"});
         System.out.println(count);
     }
-    public User UserMessage(String username,String major,Integer stuID,String gender,String stuclass){
-        String sql="UPDATE studentuser SET major=?,stuID=?,gender=?,stuclass=? WHERE username=?";
-        jdbcTemplate.update(sql,major,stuID,gender,stuclass,username);
+    public User UserMessage(String username,String major,Integer stuID,String gender,String stuclass,String name){
+        String sql="UPDATE studentuser SET major=?,stuID=?,gender=?,stuclass=?,name=? WHERE username=?";
+        jdbcTemplate.update(sql,major,stuID,gender,stuclass,name,username);
         User user=loginDAO.Select(username);
         return user;
     }

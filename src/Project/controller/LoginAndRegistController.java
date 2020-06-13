@@ -142,8 +142,9 @@ public class LoginAndRegistController {
                                 @RequestParam("stuID") Integer stuID,
                                 @RequestParam("gender") String gender,
                                 @RequestParam("stuclass") String stuclass,
+                                @RequestParam("name") String name,
                                 Map<String,Object> map){
-        User user=registDAO.UserMessage(username,major,stuID,gender,stuclass);
+        User user=registDAO.UserMessage(username,major,stuID,gender,stuclass,name);
         map.put("user",user);
         return "index";
     }

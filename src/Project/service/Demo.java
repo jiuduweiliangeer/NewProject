@@ -11,7 +11,7 @@ public class Demo {
     private Send send;
     public String email(String to){
         String user="64030931@qq.com";
-        String password="mjqnkuimxucdbgii";
+        String password="oupgzplelbkcbgff";
         String host="smtp.qq.com";
         String from="64030931@qq.com";
         String subject="验证码";

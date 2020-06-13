@@ -25,11 +25,13 @@ public class UserManageDAO {
                 user.setUsername(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setEmail(resultSet.getString("email"));
+                user.setName(resultSet.getString("name"));
                 user.setGender(resultSet.getString("gender"));
                 user.setMajor(resultSet.getString("major"));
                 user.setStuclass(resultSet.getString("stuclass"));
                 user.setStuID(resultSet.getInt("stuID"));
                 user.setTeaID(resultSet.getString("teaID"));
+                user.setState(resultSet.getString("state"));
                 return user;
             }
         }, identify);

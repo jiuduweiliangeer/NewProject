@@ -48,7 +48,7 @@
                                 <div class="card text-white bg-magenta mb-3 shadow-1 h-100">
                                     <div class="card-body d-flex align-items-center justify-content-center">
                                         <div>
-                                            <h5>修改密码</h5>
+                                            <h5 class="text-white">修改密码</h5>
                                         </div>
                                     </div>
                                 </div>

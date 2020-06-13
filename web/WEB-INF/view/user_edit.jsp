@@ -91,6 +91,14 @@
                             <input type="number" class="form-control" name="stuclass" placeholder="请输入班级" style="width:140px;">
                         </div>
                     </div>
+                    <div class="col-6" style="align-content: center">
+                        <div class="input-group flex-nowrap">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><span style="color:red;">&nbsp;*&nbsp;</span>姓名</span>
+                            </div>
+                            <input type="text" class="form-control" name="name" placeholder="请输入姓名" style="width:140px;">
+                        </div>
+                    </div>
                 </div>
 
                 

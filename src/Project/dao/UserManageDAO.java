@@ -211,4 +211,20 @@ public class UserManageDAO {
         System.out.println(users);
         return users;
     }
+    /*-----------管理用户账户状态-------------*/
+    public List openuser(String username){
+        String state="T";
+        String sql="UPDATE studentuser SET state=? WHERE username=?";
+        jdbcTemplate.update(sql,state,username);
+        List<User> users=userManageDAO.findstu();
+        return users;
+    }
+    public List closeuser(String username){
+        String state="F";
+        String sql="UPDATE studentuser SET state=? WHERE username=?";
+        jdbcTemplate.update(sql,state,username);
+        List<User> users=userManageDAO.findstu();
+        return users;
+    }
+    /*-----------后续学生选择座位时需要注意判定账户状态----------------*/
 }

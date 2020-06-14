@@ -62,11 +62,6 @@
                     <button type="reset" class="btn btn-secondary btn-sm ml-2">重置</button>
                 </div>
                 <div style="clear:both"></div>
-                <div class="float-right text-right mt-2">
-                    
-                    <button type="button" class="btn btn-danger btn-sm ml-2">停用用户</button>
-                    <button type="button" class="btn btn-primary btn-sm ml-2">启用用户</button>
-                </div>
             </div>
              </form>
         </div>
@@ -75,7 +70,6 @@
     <table class="table table-striped table-dark mt-1">
         <thead>
         <tr>
-            <th scope="col"><input type="checkbox" /></th>
             <!-- <th scope="col">头像</th>-->
             <th scope="col">姓名</th>
             <th scope="col">昵称</th>
@@ -92,7 +86,6 @@
             <c:if test="${!empty users}">
                 <c:forEach items="${users}" var="user">
                     <tr>
-                        <th scope="col"><input type="checkbox" /></th>
                         <!--<td>
                             <img src="./img/head-pic.jpg" width="30" height="30" class="rounded-circle" />
                         </td>-->
@@ -105,9 +98,8 @@
                         <!-- <td>浙江杭州</td>-->
                         <td>${user.state}</td>
                         <td>
-                            <button type="button" class="btn btn-primary btn-sm ml-2">启用</button>
-                            <button type="button" class="btn btn-danger btn-sm ml-2">停用</button>
-
+                            <a href="${pageContext.request.contextPath}/openuser/${username}/${user.username}"><button type="button" class="btn btn-primary btn-sm ml-2">启用</button></a>
+                            <a href="${pageContext.request.contextPath}/closeuser/${username}/${user.username}"><button type="button" class="btn btn-danger btn-sm ml-2">停用</button></a>
                         </td>
                     </tr>
                 </c:forEach>

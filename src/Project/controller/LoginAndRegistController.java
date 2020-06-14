@@ -2,7 +2,9 @@ package Project.controller;
 
 import Project.dao.LoginDAO;
 import Project.dao.RegistDAO;
+import Project.dao.SeatManageDAO;
 import Project.dao.UserManageDAO;
+import Project.pojo.Seat;
 import Project.pojo.User;
 import Project.service.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,8 @@ public class LoginAndRegistController {
     private String code;
     @Autowired
     private UserManageDAO userManageDAO;
+    @Autowired
+    private SeatManageDAO seatManageDAO;
     /*------------------登录，注册，用户or管理员---------------------------*/
     @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map<String,Object> map){
@@ -171,5 +175,60 @@ public class LoginAndRegistController {
         map.put("users",users);
         return "user_manager";
     }
-
+    /*---------管理用户状态---------------*/
+    @RequestMapping("/openuser/{username}/{user.username}")
+    public String openuser(@PathVariable("username") String username,
+                           @PathVariable("user.username") String susername,
+                           Map<String,Object> map){
+        List<User> users=userManageDAO.openuser(susername);
+        map.put("username",username);
+        map.put("users",users);
+        return "user_manager";
+    }
+    @RequestMapping("/closeuser/{username}/{user.username}")
+    public String closeuser(@PathVariable("username") String username,
+                           @PathVariable("user.username") String susername,
+                           Map<String,Object> map){
+        List<User> users=userManageDAO.closeuser(susername);
+        map.put("username",username);
+        map.put("users",users);
+        return "user_manager";
+    }
+    /*-----------进入座位管理界面-------------*/
+    @RequestMapping("/seat_manager/{user.username}")
+    public String findseat(@PathVariable("user.username") String username, Map<String,Object> map){
+        System.out.println("findseatcontroller....");
+        List<Seat> seats=seatManageDAO.findset();
+        System.out.println(seats);
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_manager";
+    }
+    /*----------进入添加座位界面-------------*/
+    @RequestMapping("/addseat/{username}")
+    public String addseatjsp(@PathVariable("username") String username,
+                             Map<String,Object> map){
+        map.put("username",username);
+        return "AddSeat";
+    }
+    /*---------添加座位后返回管理座位界面----------*/
+    @RequestMapping("/seatadd/{username}")
+    public String seatjsp(@PathVariable("username") String username,
+                          @RequestParam("location") String location,
+                          Map<String,Object> map){
+        seatManageDAO.addseat(location);
+        List<Seat> seats=seatManageDAO.findset();
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_manager";
+    }
+    /*-------未添加座位返回座位管理界面-------------*/
+    @RequestMapping("/seatjsp/{username}")
+    public String seatjspno(@PathVariable("username") String username,
+                            Map<String,Object> map){
+        List<Seat> seats=seatManageDAO.findset();
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_manager";
+    }
 }

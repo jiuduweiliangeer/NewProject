@@ -64,7 +64,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/seat_manager/${user.username}">
                                 <div class="card text-white shadow-1 bg-blue" style="height: 200px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i

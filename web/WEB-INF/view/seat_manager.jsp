@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,11 +12,11 @@
     <link href="${pageContext.request.contextPath}/css/public.css" rel="stylesheet">
 </head>
 
-<body>
+<body background="${pageContext.request.contextPath}/image/back.jpg" style="background-size: 100%;">
 <section class="container-fluid">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-dark">
-            <li class="breadcrumb-item"><a href="index.jsp">首页</a></li>
+            <li class="breadcrumb-item"><a href="${pageContext.request.contextPath}/viewmore/${username}">首页</a></li>
             <li class="breadcrumb-item active" aria-current="page">座位管理</li>
         </ol>
     </nav>
@@ -29,18 +31,7 @@
                         <option>维修中</option>
                     </select>
                 </div>
-                <div class="col d-flex align-items-center">
-                    <span class="text-nowrap mr-2">楼号</span>
-                    <input type="text" class="form-control" id="building-no">
-                </div>
-                <div class="col d-flex align-items-center">
-                    <span class="text-nowrap mr-2">层号</span>
-                    <input type="text" class="form-control" id="floor-no">
-                </div>
-                <div class="col d-flex align-items-center">
-                    <span class="text-nowrap mr-2">房号</span>
-                    <input type="text" class="form-control" id="room-no">
-                </div>
+                
                 <div class="col d-flex align-items-center">
                     <span class="text-nowrap mr-2">座号</span>
                     <input type="text" class="form-control" id="seat-no">
@@ -48,7 +39,8 @@
                 <div class="col">
                     <div class="text-right">
                         <button class="btn btn-primary mr-3">查询</button>
-                        <button class="btn btn-secondary">重置</button></div>
+                        <button class="btn btn-secondary" type="reset">重置</button>
+                    </div>
                 </div>
             </div>
         </form>
@@ -56,36 +48,29 @@
 </section>
 <section class="container-fluid mt-4">
     <div>
-        <button class="btn btn-danger mr-3">维修座位</button>
-        <button class="btn btn-primary">添加座位</button></div>
-    <table class="table table-striped mt-4" id="table" data-pagination="true" data-locale="zh-CN" data-page-size="5"
-           data-url="JSON.parse(data)">
+        <a href="${pageContext.request.contextPath}/addseat/${username}"><button class="btn btn-primary">添加座位</button></a></div>
+    <table class="table table-striped table-dark mt-4" id="table" style="background: rgba(0,0,0,0.2);">
         <thead>
         <tr>
-            <th scope="col" data-field="date">日期</th>
             <th scope="col" data-field="seatno">座位号</th>
-            <th scope="col" data-field="buildingno">楼号</th>
-            <th scope="col" data-field="floorno">层号</th>
-            <th scope="col" data-field="roomno">房号</th>
-            <th scope="col" data-field="seatno">等级</th>
-            <th scope="col" data-field="grade">颜色</th>
             <th scope="col" data-field="state">状态</th>
             <th scope="col" data-field="operate">
                 操作</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-        </tr>
+        <c:if test="${!empty seats}">
+            <c:forEach items="${seats}" var="seat">
+                <tr>
+                    <td>${seat.location}</td>
+                    <td>${seat.state}</td>
+                    <td>
+                        <input type="button" value="维修" class="btn btn-danger btn-sm ml-2">
+                        <input type="button" value="删除" class="btn btn-danger btn-sm ml-2">
+                    </td>
+                </tr>
+            </c:forEach>
+        </c:if>
         </tbody>
     </table>
 </section>
@@ -96,7 +81,7 @@
 <script src="${pageContext.request.contextPath}/js/axios.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/mock-min.js"></script>
 <script src="${pageContext.request.contextPath}/bootstrap-table-master/dist/bootstrap-table.min.js"></script>
-<script src="${pageContext.request.contextPath}/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
+<script src=".${pageContext.request.contextPath}/bootstrap-table-master/dist/locale/bootstrap-table-zh-CN.min.js"></script>
 <script>
     var $table = $('#table')
 

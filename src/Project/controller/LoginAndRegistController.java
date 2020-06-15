@@ -10,10 +10,12 @@ import Project.service.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -215,18 +217,54 @@ public class LoginAndRegistController {
     @RequestMapping("/seatadd/{username}")
     public String seatjsp(@PathVariable("username") String username,
                           @RequestParam("location") String location,
-                          Map<String,Object> map){
-        seatManageDAO.addseat(location);
-        List<Seat> seats=seatManageDAO.findset();
-        map.put("username",username);
-        map.put("seats",seats);
-        return "seat_manager";
+                          Map<String,Object> map) throws SQLException {
+        int temp=seatManageDAO.addseat(location);
+        if(temp==1){
+            List<Seat> seats=seatManageDAO.findset();
+            map.put("username",username);
+            map.put("seats",seats);
+            return "seat_manager";
+        }else {
+            map.put("username",username);
+            map.put("error","该座位已存在");
+            return "AddSeat";
+        }
     }
     /*-------未添加座位返回座位管理界面-------------*/
     @RequestMapping("/seatjsp/{username}")
     public String seatjspno(@PathVariable("username") String username,
                             Map<String,Object> map){
         List<Seat> seats=seatManageDAO.findset();
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_manager";
+    }
+    /*--------------------查询座位-----------------------*/
+    @RequestMapping("/seat_manager_select/{username}")
+    public String seat_manager_select(@PathVariable("username") String username,
+                                      @RequestParam("state") String state,
+                                      @RequestParam("location") String location,
+                                      Map<String,Object> map){
+        List<Seat> seats=seatManageDAO.select_seat(state,location);
+        map.put("username",username);
+        map.put("seats",seats);
+        System.out.println(state);
+        return "seat_manager";
+    }
+    @RequestMapping("/maintain/{username}/{seat.location}")
+    public String maintain_seat(@PathVariable("username") String username,
+                                @PathVariable("seat.location") String location,
+                                Map<String,Object> map){
+        List<Seat> seats=seatManageDAO.maintain_seat(location);
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_manager";
+    }
+    @RequestMapping("/delete/{username}/{seat.location}")
+    public String delete_seat(@PathVariable("username") String username,
+                              @PathVariable("seat.location") String location,
+                              Map<String,Object> map){
+        List<Seat> seats=seatManageDAO.delete_seat(location);
         map.put("username",username);
         map.put("seats",seats);
         return "seat_manager";

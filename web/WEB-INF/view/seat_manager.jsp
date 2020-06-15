@@ -21,24 +21,24 @@
         </ol>
     </nav>
     <div class="mt-4">
-        <form>
+        <form  action="${pageContext.request.contextPath}/seat_manager_select/${username}" >
             <div class="row">
                 <div class="col d-flex align-items-center">
                     <span class="text-nowrap mr-2">状态</span>
                     <select class="form-control" id="state" name="state">
-                        <option>请选择</option>
-                        <option>空闲中</option>
-                        <option>维修中</option>
+                        <option value="">请选择</option>
+                        <option value="T">T</option>
+                        <option value="F">F</option>
                     </select>
                 </div>
                 
                 <div class="col d-flex align-items-center">
                     <span class="text-nowrap mr-2">座号</span>
-                    <input type="text" class="form-control" id="seat-no">
+                    <input type="text" class="form-control" name="location" id="seat-no">
                 </div>
                 <div class="col">
                     <div class="text-right">
-                        <button class="btn btn-primary mr-3">查询</button>
+                        <button class="btn btn-primary mr-3" type="submit">查询</button>
                         <button class="btn btn-secondary" type="reset">重置</button>
                     </div>
                 </div>
@@ -54,6 +54,8 @@
         <tr>
             <th scope="col" data-field="seatno">座位号</th>
             <th scope="col" data-field="state">状态</th>
+            <th scope="col" data-field="state">空闲</th>
+            <th scope="col" data-field="state">使用者</th>
             <th scope="col" data-field="operate">
                 操作</th>
         </tr>
@@ -64,9 +66,11 @@
                 <tr>
                     <td>${seat.location}</td>
                     <td>${seat.state}</td>
+                    <td>${seat.useruse}</td>
+                    <td>${seat.username}</td>
                     <td>
-                        <input type="button" value="维修" class="btn btn-danger btn-sm ml-2">
-                        <input type="button" value="删除" class="btn btn-danger btn-sm ml-2">
+                        <a href="${pageContext.request.contextPath}/maintain/${username}/${seat.location}"><input type="button" value="维修" class="btn btn-danger btn-sm ml-2"></a>
+                        <a href="${pageContext.request.contextPath}/delete/${username}/${seat.location}"><input type="button" value="删除" class="btn btn-danger btn-sm ml-2"></a>
                     </td>
                 </tr>
             </c:forEach>

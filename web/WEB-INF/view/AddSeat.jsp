@@ -125,7 +125,9 @@
         <div class="inputBox">
             <input type="text" name="location" required="" placeholder="location">
         </div>
-
+        <div>
+            <p style="color: red">${requestScope.error}</p>
+        </div>
         <input type="submit" name="" value="add" id="submit" class="submit">
         <a href="${pageContext.request.contextPath}/seatjsp/${username}">
             <input type="button" value="return" class="register">
@@ -134,5 +136,4 @@
 </div>
 </body>
 <script>
-
 </script>

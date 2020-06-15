@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 	
 <head>
@@ -68,7 +70,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/stu_history/${user.username}">
                                 <div class="card text-white shadow-1 mb-3 bg-magenta" style="height: 180px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
@@ -77,7 +79,7 @@
                                     </div>
                                 </div>
                             </a>
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/seat_select/${user.username}">
                                 <div class="card text-white bg-orange mb-3 shadow-1" style="height: 120px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i
@@ -95,15 +97,19 @@
             <div class="card">
                 <div class="card-header bg-dark d-flex align-items-center justify-content-between">
                     <h4 class="text-white-85 font-weight-normal">通知公告</h4>
-                    <p class="small"><a href="javascript:;" class="text-white-85">MOVE>></a></p>
+                    <p class="small"><a href="${pageContext.request.contextPath}/publish/${user.username}" class="text-white-85">MORE>></a></p>
                 </div>
-									
                 <div class="card-body" style="background: rgba(0,0,0,0.2);">
                 	
                     <div class="row">
                         <div>
                             <ul data-titles="titles">
-                                <li>图书馆开展第二场“知雅”对话图</li>
+                                <c:if test="${!empty publishes}">
+                                    <c:forEach items="${publishes}" var="publish" begin="0" end="20">
+                                        <li style="color: black"><a href="${publish.purl}" style="color: black">${publish.urlname}</a></li>
+                                    </c:forEach>
+                                </c:if>
+                                <%--<li>图书馆开展第二场“知雅”对话图</li>
                                 <li>部分学习平台汇总</li>
                                 <li>图书馆开展第二场“知雅”对话图</li>
                                 <li>部分学习平台汇总</li>
@@ -122,7 +128,7 @@
                                 <li>图书馆开展第二场“知雅”对话图</li>
                                 <li>部分学习平台汇总</li>
                                 <li>图书馆开展第二场“知雅”对话图</li>
-                                <!-- 这里放通知公告的标题 -->
+                                <!-- 这里放通知公告的标题 -->--%>
                             </ul>
                         </div>
                      

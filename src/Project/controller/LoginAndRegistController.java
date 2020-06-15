@@ -1,9 +1,8 @@
 package Project.controller;
 
-import Project.dao.LoginDAO;
-import Project.dao.RegistDAO;
-import Project.dao.SeatManageDAO;
-import Project.dao.UserManageDAO;
+import Project.dao.*;
+import Project.pojo.History;
+import Project.pojo.Publish;
 import Project.pojo.Seat;
 import Project.pojo.User;
 import Project.service.Demo;
@@ -32,6 +31,12 @@ public class LoginAndRegistController {
     private UserManageDAO userManageDAO;
     @Autowired
     private SeatManageDAO seatManageDAO;
+    @Autowired
+    private SeatSelectDAO seatSelectDAO;
+    @Autowired
+    private HistoryDAO historyDAO;
+    @Autowired
+    private PublishDAO publishDAO;
     /*------------------登录，注册，用户or管理员---------------------------*/
     @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map<String,Object> map){
@@ -43,6 +48,8 @@ public class LoginAndRegistController {
             User user=loginDAO.Select(username);
             map.put("user",user);
             if (identify.equals("stu")){
+                List<Publish> publishes=publishDAO.findpublish();
+                map.put("publishes",publishes);
                 temp="index";
             }else {
                 temp="inform";
@@ -98,6 +105,8 @@ public class LoginAndRegistController {
             if (identify.equals("stu")){
                 User user=loginDAO.Select(username);
                 map.put("user",user);
+                List<Publish> publishes=publishDAO.findpublish();
+                map.put("publishes",publishes);
                 return "index";
             }else{
                 return "redirect:/viewmore/{username}";
@@ -268,5 +277,56 @@ public class LoginAndRegistController {
         map.put("username",username);
         map.put("seats",seats);
         return "seat_manager";
+    }
+    /*--------------------------------------------------------------------------------------*/
+    /*------------------学生进入座位选择界面-----------------------------*/
+    @RequestMapping("/seat_select/{user.username}")
+    public String seat_selectjsp(@PathVariable("user.username") String username,
+                                 Map<String,Object> map){
+        List<Seat> seats=seatSelectDAO.findselect_seat();
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_select";
+    }
+    /*-----------------学生报告故障处理-------------------------------*/
+    @RequestMapping("/false/{username}/{location}")
+    public String seat_false_stu(@PathVariable("username") String username,
+                                 @PathVariable("location") String location,
+                                 Map<String,Object> map){
+        List<Seat> seats=seatSelectDAO.false_seat(location,username);
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_select";
+    }
+    /*----------------学生查询座位------------------------------*/
+    @RequestMapping("/select_seat_stu/{username}")
+    public String select_seat_stu(@PathVariable("username") String username,
+                                 @RequestParam("useruse") String useruse,
+                                 @RequestParam("location") String location,
+                                 Map<String,Object> map){
+        List<Seat> seats=seatSelectDAO.select_seat_stu(useruse,location);
+        map.put("username",username);
+        map.put("seats",seats);
+        return "seat_select";
+    }
+    /*-----------------------------------------------------------*/
+    /*-----------------学生进入相应的历史记录界面--------------------*/
+    @RequestMapping("/stu_history/{user.username}")
+    public String stu_history(@PathVariable("user.username") String username,
+                              Map<String,Object> map){
+        List<History> histories=historyDAO.findhistory(username);
+        map.put("username",username);
+        map.put("histories",histories);
+        return "historical_record";
+    }
+    /*-----------------------------------------------------------*/
+    /*---------------------学生进入公告查询界面--------------------------*/
+    @RequestMapping("/publish/{user.username}")
+    public String publish(@PathVariable("user.username") String username,
+                          Map<String,Object> map){
+        List<Publish> publishes=publishDAO.findpublish();
+        map.put("username",username);
+        map.put("publishes",publishes);
+        return "publish";
     }
 }

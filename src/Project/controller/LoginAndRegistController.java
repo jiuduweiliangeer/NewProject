@@ -1,20 +1,22 @@
 package Project.controller;
 
 import Project.dao.*;
-import Project.pojo.History;
-import Project.pojo.Publish;
-import Project.pojo.Seat;
-import Project.pojo.User;
+import Project.pojo.*;
 import Project.service.Demo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,12 +39,20 @@ public class LoginAndRegistController {
     private HistoryDAO historyDAO;
     @Autowired
     private PublishDAO publishDAO;
+    @Autowired
+    private DestineDAO destineDAO;
     /*------------------登录，注册，用户or管理员---------------------------*/
     @RequestMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String password, Map<String,Object> map){
         System.out.println("controller load");
+
         boolean s=loginDAO.Login(username, password);
-        if(s){
+        boolean u=loginDAO.judge_use(username);
+        if(s&&u){
+            int judge=destineDAO.judge_destine_time(username);
+            if (judge==0){
+                destineDAO.destine_delete(username);
+            }
             String temp=null;
             String identify=loginDAO.Identify(username);
             User user=loginDAO.Select(username);
@@ -161,6 +171,8 @@ public class LoginAndRegistController {
                                 Map<String,Object> map){
         User user=registDAO.UserMessage(username,major,stuID,gender,stuclass,name);
         map.put("user",user);
+        List<Publish> publishes=publishDAO.findpublish();
+        map.put("publishes",publishes);
         return "index";
     }
     /*----------管理员进入用户管理界面------------*/
@@ -209,6 +221,10 @@ public class LoginAndRegistController {
     @RequestMapping("/seat_manager/{user.username}")
     public String findseat(@PathVariable("user.username") String username, Map<String,Object> map){
         System.out.println("findseatcontroller....");
+        int temp=destineDAO.judge_destine_time(username);
+        if (temp==0){
+            destineDAO.destine_delete(username);
+        }
         List<Seat> seats=seatManageDAO.findset();
         System.out.println(seats);
         map.put("username",username);
@@ -283,6 +299,10 @@ public class LoginAndRegistController {
     @RequestMapping("/seat_select/{user.username}")
     public String seat_selectjsp(@PathVariable("user.username") String username,
                                  Map<String,Object> map){
+        int temp=destineDAO.judge_destine_time(username);
+        if (temp==0){
+            destineDAO.destine_delete(username);
+        }
         List<Seat> seats=seatSelectDAO.findselect_seat();
         map.put("username",username);
         map.put("seats",seats);
@@ -309,11 +329,38 @@ public class LoginAndRegistController {
         map.put("seats",seats);
         return "seat_select";
     }
+    /*--------------------学生预定座位-------------------------*/
+    @RequestMapping("/destine/{username}/{seat.location}")
+    public String entrace_destine(@PathVariable("username") String username,
+                                  @PathVariable("seat.location") String location,
+                                  Map<String,Object> map){
+        int temp=seatSelectDAO.judge(location);
+        String s=null;
+        if (temp==1){
+            seatSelectDAO.insert_time(username,location);
+            List<Seat> seats=seatSelectDAO.findselect_seat();
+            map.put("username",username);
+            map.put("seats",seats);
+            return "seat_select";
+        }else if(temp==0){
+            List<Seat> seats=seatSelectDAO.findselect_seat();
+            map.put("username",username);
+            map.put("seats",seats);
+            map.put("location",location);
+            map.put("error","false or occupy");
+            s="seat_select";
+        }
+        return s;
+    }
     /*-----------------------------------------------------------*/
     /*-----------------学生进入相应的历史记录界面--------------------*/
     @RequestMapping("/stu_history/{user.username}")
     public String stu_history(@PathVariable("user.username") String username,
                               Map<String,Object> map){
+        int temp=destineDAO.judge_destine_time(username);
+        if (temp==0){
+            destineDAO.destine_delete(username);
+        }
         List<History> histories=historyDAO.findhistory(username);
         map.put("username",username);
         map.put("histories",histories);
@@ -328,5 +375,61 @@ public class LoginAndRegistController {
         map.put("username",username);
         map.put("publishes",publishes);
         return "publish";
+    }
+    /*-------------------学生进入预约记录界面----------------------*/
+    @RequestMapping("/destine_jsp/{user.username}")
+    public String destine_jsp(@PathVariable("user.username") String username,
+                              Map<String,Object> map){
+        int temp=destineDAO.judge_destine_time(username);
+        if (temp==0){
+            destineDAO.destine_delete(username);
+        }
+        Dastine dastine=destineDAO.select(username);
+        map.put("username",username);
+        map.put("dastine",dastine);
+        return "destine";
+    }
+    /*-----------------修改预约状态-------------------------*/
+    @RequestMapping("/cancel/{username}/{location}")
+    public String destine_cancel(@PathVariable("username") String username,
+                                 @PathVariable("location") String location,
+                                 Map<String,Object> map){
+        destineDAO.destine_cancel(username,location);
+        Dastine dastine=destineDAO.select(username);
+        map.put("username",username);
+        map.put("dastine",dastine);
+        return "destine";
+    }
+    @RequestMapping("/confirm/{username}/{dastine.location}")
+    public String destine_comfirm(@PathVariable("username") String username,
+                                 @PathVariable("dastine.location") String location,
+                                 Map<String,Object> map){
+        destineDAO.destine_confirm(username,location);
+        Dastine dastine=destineDAO.select(username);
+        map.put("username",username);
+        map.put("dastine",dastine);
+        return "destine";
+    }
+    @RequestMapping("/end/{username}/{dastine.location}")
+    public String destine_end(@PathVariable("username") String username,
+                                  @PathVariable("dastine.location") String location,
+                                  Map<String,Object> map){
+        destineDAO.destine_end(username,location);
+        Dastine dastine=destineDAO.select(username);
+        map.put("username",username);
+        map.put("dastine",dastine);
+        return "destine";
+    }
+    @InitBinder
+    public void initBinder(ServletRequestDataBinder bin)
+
+    {
+
+        SimpleDateFormat sdf = new SimpleDateFormat ("yyyy-MM-dd HH:mm:ss");
+
+        CustomDateEditor cust =new CustomDateEditor (sdf,true);
+
+        bin.registerCustomEditor(Date.class,cust);
+
     }
 }

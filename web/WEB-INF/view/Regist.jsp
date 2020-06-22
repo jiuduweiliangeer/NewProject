@@ -138,7 +138,7 @@
             <form:errors path="email" cssClass="red"/>
         </div>
         <div>
-            <p style="color: red">${error}</p>
+            <p style="color: red">${message}</p>
         </div>
         <input type="submit" name="" value="regist" id="submit" class="submit">
         <a href="loginjsp">

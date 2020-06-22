@@ -61,7 +61,7 @@
                             </a>
                         </div>
                         <div class="col-sm">
-                            <a href="#">
+                            <a href="${pageContext.request.contextPath}/destine_jsp/${user.username}">
                                 <div class="card text-white bg-orange mb-3 shadow-1" style="height: 120px;">
                                     <div class="card-body d-flex align-items-center">
                                         <i

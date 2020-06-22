@@ -26,7 +26,6 @@
                     <h4 class="text-white-85 font-weight-normal">通知公告</h4>
                     <p class="small"><a href="javascript:;" class="text-white-85">MOVE>></a></p>
                 </div>
-									
                 <div class="card-body" style="background: rgba(0,0,0,0.2);">
                 	
                     <div class="row">

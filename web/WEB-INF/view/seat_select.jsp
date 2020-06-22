@@ -67,9 +67,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">座位号：${seat.location}</h5>
                                 <p class="card-text"><small class="text-success">${seat.useruse}</small></p>
+                                <c:if test="${location.equals(seat.location)}">
+                                    <small style="color: red">${error}</small>
+                                </c:if>
                             </div>
                             <div class="card-footer">
-                                <small class="text-primary"><a href="#">预定：查看</a></small>
+                                <small class="text-primary"><a href="${pageContext.request.contextPath}/destine/${username}/${seat.location}">预定：查看</a></small>
                                 <small class="text-danger"><a href="#" onclick="falseSeat(${seat.location})">故障：报错</a></small>
                             </div>
                         </div>

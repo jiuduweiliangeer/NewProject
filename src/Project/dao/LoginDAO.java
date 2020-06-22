@@ -25,6 +25,18 @@ public class LoginDAO {
             return s;
         }
     }
+    /*---------------判断账号是否可用-------------*/
+    public boolean judge_use(String username){
+        boolean temp=true;
+        String sql="SELECT state FROM studentuser WHERE username=?";
+        String state=jdbcTemplate.queryForObject(sql,String.class,username);
+        if (state.equals("T")){
+            temp=true;
+        }else {
+            temp=false;
+        }
+        return temp;
+    }
     public String Identify(String username){
         String sql="SELECT identify FROM studentuser WHERE username=?";
         String s=jdbcTemplate.queryForObject(sql,String.class,username);

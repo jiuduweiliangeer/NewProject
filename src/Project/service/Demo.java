@@ -10,8 +10,8 @@ public class Demo {
     @Autowired
     private Send send;
     public String email(String to){
-        String user="64030931@qq.com";
-        String password="oupgzplelbkcbgff";
+        String user="-------------（邮箱地址）";
+        String password="----------------（STMP授权密码）";
         String host="smtp.qq.com";
         String from="64030931@qq.com";
         String subject="验证码";

@@ -29,10 +29,14 @@ public class LoginDAO {
     public boolean judge_use(String username){
         boolean temp=true;
         String sql="SELECT state FROM studentuser WHERE username=?";
-        String state=jdbcTemplate.queryForObject(sql,String.class,username);
-        if (state.equals("T")){
-            temp=true;
-        }else {
+        try {
+            String state=jdbcTemplate.queryForObject(sql,String.class,username);
+            if (state.equals("T")){
+                temp=true;
+            }else {
+                temp=false;
+            }
+        }catch (Exception e){
             temp=false;
         }
         return temp;

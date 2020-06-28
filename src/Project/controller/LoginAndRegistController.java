@@ -187,6 +187,7 @@ public class LoginAndRegistController {
     }
     /*---------管理用户界面查询----------------*/
     @RequestMapping("/user_manager_select/{username}")
+
     public String user_manager_select(@PathVariable("username") String username,
                                       @RequestParam("state") String state,
                                       @RequestParam("susername") String susername,

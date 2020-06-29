@@ -50,9 +50,7 @@
         <tbody>
         <c:if test="${!empty dastine}">
             <tr>
-
                 <td>${dastine.username}</td>
-
                 <td>${dastine.location}</td>
                 <td>${dastine.opentime}</td>
                 <td>${dastine.closetime}</td>
@@ -60,17 +58,12 @@
                 <!-- <td>浙江杭州</td>-->
             </tr>
         </c:if>
-
-
         </tbody>
-
     </table>
     <div class="row">
         <div class="col-12">
             <form>
                 <div style="overflow:hidden;" class="bg-dark p-1 rounded">
-
-
                     <div class="mt-2" style="text-align: center;">
                         <a href="${pageContext.request.contextPath}/cancel/${username}/${dastine.location}"><button type="button" class="btn btn-danger btn-sm ml-3">取消预约</button></a>
                         <a href="${pageContext.request.contextPath}/confirm/${username}/${dastine.location}"><button type="button" class="btn btn-primary btn-sm ml-3">确认预约</button></a>
@@ -80,8 +73,6 @@
             </form>
         </div>
     </div>
-
-
 </div>
 </body>
 </html>

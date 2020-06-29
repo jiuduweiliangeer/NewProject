@@ -84,6 +84,7 @@
         background: transparent;
         border: none;
         outline: none;
+        margin-left: 115px;
         color: #fff;
         background: #03a9f4;
         padding: 10px 20px;
@@ -118,11 +119,11 @@
 <div class="box" >
     <h2>Code</h2>
     <form action="code/${rusername}/${rpassword}/${remail}" method="post">
-       <div>
+       <div class="inputbox">
            <input type="text" placeholder="emailcode" name="emailcode">
        </div>
         <div>
-            <input type="submit" value="submit">
+            <input type="submit" value="submit" class="submit">
         </div>
     </form>
 </div>

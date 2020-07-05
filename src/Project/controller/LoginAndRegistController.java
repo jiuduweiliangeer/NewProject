@@ -335,14 +335,14 @@ public class LoginAndRegistController {
     public String entrace_destine(@PathVariable("username") String username,
                                   @PathVariable("seat.location") String location,
                                   Map<String,Object> map){
-        int temp=seatSelectDAO.judge(location);
+        int temp=seatSelectDAO.judge(location,username);
         String s=null;
         if (temp==1){
             seatSelectDAO.insert_time(username,location);
             List<Seat> seats=seatSelectDAO.findselect_seat();
             map.put("username",username);
             map.put("seats",seats);
-            return "seat_select";
+            s="seat_select";
         }else if(temp==0){
             List<Seat> seats=seatSelectDAO.findselect_seat();
             map.put("username",username);

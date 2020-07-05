@@ -111,14 +111,14 @@ public class SeatSelectDAO {
         return seats;
     }
     /*-----------进入预约座位-------------------*/
-    public int judge(String location){
+    public int judge(String location,String username){
         int temp=0;
         String sql="SELECT useruse FROM room_seat WHERE location=?";
         String state=jdbcTemplate.queryForObject(sql,String.class,location);
-        String sql1="SELECT username FROM destine";
         String u=null;
+        String sql2="SELECT location FROM destine WHERE username=?";
         try{
-            jdbcTemplate.queryForObject(sql1,String.class);
+            jdbcTemplate.queryForObject(sql2,String.class,username);
             u="1";
         }catch (Exception e){
             u=null;
